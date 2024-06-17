@@ -11,9 +11,11 @@ option = st.selectbox(
     options=tuple(Data))
 with open(f"DATAPATH/{option}",'rb') as file:
     st.download_button(label="DOWNLOAD",data=file,file_name=option)
+st.divider()
 files = st.file_uploader(label="UPLOAD FILES",accept_multiple_files=True)
 submit_btn = st.button("Submit")
 if submit_btn:
     for file in files:
         with open(f"DATAPATH/{file.name}", "wb") as file_obj:
             file_obj.write(file.getvalue())
+st.divider()
