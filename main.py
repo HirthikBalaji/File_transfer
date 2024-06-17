@@ -19,3 +19,4 @@ if submit_btn:
         with open(f"DATAPATH/{file.name}", "wb") as file_obj:
             file_obj.write(file.getvalue())
 st.divider()
+st.header("THANK_YOU")
