@@ -21,7 +21,7 @@
 # Level of logging: 'error', 'warning', 'info', or 'debug'.
 
 # Default: 'info'
-# level = "info"
+evel = "debug"
 
 # String format for logging messages. If logger.datetimeFormat is set,
 # logger messages will default to `%(asctime)s.%(msecs)03d %(message)s`. See
@@ -149,7 +149,7 @@
 # Automatically rerun script when the file is modified on disk.
 
 # Default: false
-# runOnSave = false
+runOnSave = true
 
 # The address where the server will listen for client and browser
 # connections. Use this if you want to bind the server to a specific address.
@@ -164,7 +164,7 @@
 # Don't use port 3000 which is reserved for internal development.
 
 # Default: 8501
-# port = 8501
+port = 8501
 
 # The base path for the URL where Streamlit should be served from.
 
@@ -205,7 +205,7 @@ maxUploadSize = 2000
 # Enable serving files from a `static` directory in the running app's directory.
 
 # Default: false
-# enableStaticServing = false
+enableStaticServing = true
 
 # Server certificate file for connecting via HTTPS.
 # Must be set at the same time as "server.sslKeyFile".
@@ -251,8 +251,7 @@ maxUploadSize = 2000
 # development.
 
 # Default: whatever value is set in server.port.
-# serverPort = 8501
-
+serverPort = 8501
 
 [mapbox]
 
