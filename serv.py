@@ -1,39 +1,43 @@
-import os
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler
 from pyftpdlib.servers import FTPServer
 
+
 def main():
-    # Instantiate a dummy authorizer for managing 'virtual' users
+    # Create a DummyAuthorizer object to manage user permissions
     authorizer = DummyAuthorizer()
 
-    # Define a new user having full r/w permissions and a read-only
-    # anonymous user
-    # authorizer.add_user('hirthik', '12345', '/Users/hirthik', perm='elradfmwMT')
+    # Add a user with username 'YOUR_NAME', password '12345',
+    # and the home directory '/Users/YOUR_NAME' with specific permissions
+    authorizer.add_user('YOUR_NAME', '12345', '/Users/YOUR_NAME', perm='elradfmwMT')
+
+    # Add an anonymous user with home directory "DATAPATH" and specific permissions
     authorizer.add_anonymous(homedir="DATAPATH", perm="elradfmwMT")
 
-    # Instantiate FTP handler class
+    # Create an instance of FTPHandler
     handler = FTPHandler
+
+    # Assign the authorizer to the handler
     handler.authorizer = authorizer
 
-    # Define a customized banner (string returned when client connects)
+    # Set a custom banner message for the FTP server
     handler.banner = "pyftpdlib based ftpd ready."
 
-    # Specify a masquerade address and the range of ports to use for
-    # passive connections.  Decomment in case you're behind a NAT.
-    #handler.masquerade_address = '151.25.42.11'
-    #handler.passive_ports = range(60000, 65535)
-
-    # Instantiate FTP server class and listen on 0.0.0.0:21
+    # Define the address and port for the FTP server to listen on (port 21)
     address = ('', 21)
+
+    # Create an FTPServer instance bound to the defined address using the handler
     server = FTPServer(address, handler)
 
-    # set a limit for connections
+    # Limit the maximum number of simultaneous connections to 256
     server.max_cons = 256
+
+    # Limit the maximum number of simultaneous connections per IP address to 5
     server.max_cons_per_ip = 5
 
-    # start ftp server
+    # Start serving FTP requests indefinitely
     server.serve_forever()
+
 
 if __name__ == '__main__':
     main()
