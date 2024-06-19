@@ -21,7 +21,7 @@
 # Level of logging: 'error', 'warning', 'info', or 'debug'.
 
 # Default: 'info'
-evel = "debug"
+level = "warning"
 
 # String format for logging messages. If logger.datetimeFormat is set,
 # logger messages will default to `%(asctime)s.%(msecs)03d %(message)s`. See
@@ -205,7 +205,7 @@ maxUploadSize = 2000
 # Enable serving files from a `static` directory in the running app's directory.
 
 # Default: false
-enableStaticServing = true
+# enableStaticServing = true
 
 # Server certificate file for connecting via HTTPS.
 # Must be set at the same time as "server.sslKeyFile".

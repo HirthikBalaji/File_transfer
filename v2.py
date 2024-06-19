@@ -5,12 +5,6 @@ ftp = FTP("localhost")
 ftp.login()
 st.set_page_config(layout="wide")
 
-option = st.selectbox("DIRECTORY", ["Music", "Downloads", "Movies", "Documents"])
-if option:
-    ftp.cwd("/")
-    ftp.cwd(f"/{option}")
-    file = ftp.nlst()
-    l = []
-    for i in file:
-        l.append(str(i))
-    file = st.selectbox("FILES", l)
+option = st.selectbox("DIRECTORY", ftp.nlst())
+st.write(option)
+st.markdown(f'<a href="http://192.168.1.6:21/{option}">Hi!</a>', unsafe_allow_html=True)
