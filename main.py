@@ -1,22 +1,27 @@
-import os
-
 import streamlit as st
-
+from ftplib import FTP
+import pickle
 st.set_page_config(layout="wide")
-st.header("WELCOME!")
+host = st.text_input("host")
+user = st.text_input("User")
+password = st.text_input("Password", type='password')
+data = {
+    'host': host,
+    'user': user,
+    'password': password
+}
+conn = st.button("CONNECT!")
+if conn:
+    try:
+        ftp = FTP(host)
+        ftp.login(user, password)
+        with open("temp.bin", 'wb') as file:
+            pickle.dump(data, file)
+        ftp.quit()
+        st.success("LOGGED IN")
+        st.page_link("pages/downloader.py", label="DOWNLOAD!")
+        st.page_link("pages/uploader.py", label="UPLOAD!")
+    except Exception as e:
+        st.error(e)
 
-Data = os.listdir("DATAPATH")
-option = st.selectbox(
-    label="Available files...",
-    options=tuple(Data))
-with open(f"DATAPATH/{option}",'rb') as file:
-    st.download_button(label="DOWNLOAD",data=file,file_name=option)
-st.divider()
-files = st.file_uploader(label="UPLOAD FILES",accept_multiple_files=True)
-submit_btn = st.button("Submit")
-if submit_btn:
-    for file in files:
-        with open(f"DATAPATH/{file.name}", "wb") as file_obj:
-            file_obj.write(file.getvalue())
-st.divider()
-st.header("THANK_YOU")
+
