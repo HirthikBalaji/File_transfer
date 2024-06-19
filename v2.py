@@ -7,4 +7,7 @@ st.set_page_config(layout="wide")
 
 option = st.selectbox("DIRECTORY", ftp.nlst())
 st.write(option)
-st.markdown(f'<a href="http://192.168.1.6:21/{option}">Hi!</a>', unsafe_allow_html=True)
+button = st.button("Download")
+if button:
+    with st.spinner(f'Downloading.. {option}'):
+        ftp.retrbinary("RETR " + option, open(option, 'wb').write)
