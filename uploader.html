@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload File to FTP Server</title>
+<script>
+function displayFilePath() {
+    var fileInput = document.getElementById('fileInput');
+    var filePathDisplay = document.getElementById('filePathDisplay');
+
+    // Check if a file is selected
+    if (fileInput.files.length > 0) {
+        var filePath = fileInput.files[0].name;
+        filePathDisplay.textContent = 'Selected file: ' + filePath;
+    } else {
+        filePathDisplay.textContent = 'No file selected';
+    }
+}
+</script>
+</head>
+<body>
+    <h2>Upload File to FTP Server</h2>
+    <form action="uploader.py" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept=".txt,.pdf,.doc,.docx" onchange="displayFilePath()">
+        <p id="filePathDisplay">No file selected</p>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

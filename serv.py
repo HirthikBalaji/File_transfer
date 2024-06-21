@@ -9,7 +9,7 @@ def main():
 
     # Add a user with username 'YOUR_NAME', password '12345',
     # and the home directory '/Users/YOUR_NAME' with specific permissions
-    authorizer.add_user('YOUR_NAME', '12345', '/Users/YOUR_NAME', perm='elradfmwMT')
+    # authorizer.add_user('YOUR_NAME', '12345', '/Users/YOUR_NAME', perm='elradfmwMT')
 
     # Add an anonymous user with home directory "DATAPATH" and specific permissions
     authorizer.add_anonymous(homedir="DATAPATH", perm="elradfmwMT")
